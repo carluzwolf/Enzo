@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PARABÉNS ENZO - O GASPARZINHO DE FOGO</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Comic+Neue:wght@700&family=VT323&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        :root {
+            --neon-orange: #ff5e00;
+            --blind-white: #ffffff;
+            --ifba-green: #2e7d32;
+            --burned-resistor: #333;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #000;
+            color: var(--blind-white);
+            font-family: 'Comic Neue', cursive;
+            overflow-x: hidden;
+            text-align: center;
+        }
+
+        /* Animação de fundo Matrix Ruivo */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 20px,
+                #220d00 20px,
+                #220d00 40px
+            );
+            opacity: 0.2;
+        }
+
+        /* --- CABEÇALHO --- */
+        header {
+            padding: 50px 20px;
+            background: linear-gradient(180deg, var(--neon-orange), transparent);
+            animation: glow 2s infinite alternate;
+        }
+
+        h1 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 2.5rem;
+            text-shadow: 4px 4px 0px #000;
+            line-height: 1.5;
+            color: #fff;
+        }
+
+        .subtitle {
+            font-family: 'VT323', monospace;
+            font-size: 2rem;
+            color: yellow;
+            background-color: black;
+            display: inline-block;
+            padding: 5px 15px;
+            margin-top: 20px;
+            transform: rotate(-2deg);
+            border: 2px dashed red;
+        }
+
+        /* --- A ZUEIRA --- */
+        .section-zueira {
+            padding: 40px 10px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            border: 3px solid var(--neon-orange);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 0 20px var(--neon-orange);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.02) rotate(1deg);
+        }
+
+        h2 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1.2rem;
+            color: var(--ifba-green);
+            margin-bottom: 15px;
+            text-shadow: 2px 2px #000;
+        }
+
+        p {
+            font-size: 1.3rem;
+            line-height: 1.6;
+        }
+
+        .highlight {
+            color: var(--neon-orange);
+            font-weight: bold;
+            text-transform: uppercase;
+            text-decoration: underline wavy yellow;
+        }
+
+        /* --- ESTATÍSTICAS RPG --- */
+        .stats-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .stat-box {
+            background: #111;
+            border: 2px solid #fff;
+            padding: 15px;
+            width: 200px;
+            font-family: 'VT323', monospace;
+            font-size: 1.5rem;
+        }
+
+        .stat-bar {
+            height: 10px;
+            background: #333;
+            margin-top: 5px;
+            position: relative;
+        }
+
+        .fill-melanina { width: 1%; background: #fff; } /* 1% de melanina kkk */
+        .fill-eletronica { width: 15%; background: blue; } /* Só sabe ligar LED */
+        .fill-ruivo { width: 100%; background: var(--neon-orange); animation: pulseWidth 1s infinite; }
+
+        /* --- IFBA ZONE --- */
+        .ifba-warning {
+            background-color: yellow;
+            color: black;
+            padding: 20px;
+            font-weight: bold;
+            font-size: 1.5rem;
+            border: 5px solid red;
+            transform: rotate(2deg);
+            margin: 40px 0;
+        }
+
+        /* --- GALERIA DE FOTOS (O PEDIDO) --- */
+        .photo-area {
+            background-color: #222;
+            padding: 40px 10px;
+            border-top: 4px solid var(--neon-orange);
+            border-bottom: 4px solid var(--neon-orange);
+        }
+
+        .photo-grid {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .polaroid {
+            background: white;
+            padding: 15px 15px 40px 15px;
+            color: black;
+            font-family: 'Comic Neue', cursive;
+            font-weight: bold;
+            transform: rotate(-3deg);
+            transition: all 0.3s;
+            width: 300px;
+        }
+
+        .polaroid:nth-child(2) { transform: rotate(4deg); z-index: 2; }
+        .polaroid:nth-child(3) { transform: rotate(-2deg); }
+
+        .polaroid:hover {
+            transform: scale(1.1) rotate(0deg);
+            z-index: 10;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .polaroid img {
+            width: 100%;
+            height: 350px; /* Aumentei um pouco a altura para pegar melhor as fotos verticais */
+            object-fit: cover; /* Isso garante que a foto preencha o quadrado sem esticar */
+            object-position: center top; /* Foca mais no rosto */
+            border: 1px solid #ddd;
+            background-color: #eee;
+        }
+
+        /* --- TEXTÃO --- */
+        .textao {
+            max-width: 700px;
+            margin: 50px auto;
+            text-align: left;
+            padding: 20px;
+            border: 1px dashed white;
+            background: rgba(0,0,0,0.8);
+        }
+
+        /* --- BOTÃO FLUTUAR (REFERÊNCIA SECRETA) --- */
+        .redeem-btn {
+            background: var(--ifba-green);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-family: 'Press Start 2P';
+            margin-top: 20px;
+            animation: bounce 2s infinite;
+        }
+
+        /* --- KEYFRAMES --- */
+        @keyframes glow {
+            from { box-shadow: 0 0 10px var(--neon-orange); }
+            to { box-shadow: 0 0 40px var(--neon-orange), 0 0 20px yellow; }
+        }
+        @keyframes pulseWidth {
+            0% { width: 95%; }
+            50% { width: 100%; filter: brightness(1.5); }
+            100% { width: 95%; }
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-20px);}
+            60% {transform: translateY(-10px);}
+        }
+
+        /* Marquee style footer */
+        marquee {
+            background: red;
+            color: yellow;
+            font-weight: bold;
+            font-size: 1.2rem;
+            padding: 5px;
+        }
+        
+        /* Ajuste Mobile */
+        @media (max-width: 600px) {
+            h1 { font-size: 1.5rem; }
+            .subtitle { font-size: 1.2rem; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="bg-animation"></div>
+
+    <header>
+        <i class="fas fa-birthday-cake fa-3x" style="color:white; margin-bottom:10px;"></i>
+        <h1>PARABÉNS ENZO!</h1>
+        <div class="subtitle">O RUI VIVO MAIS PÁLIDO DO IFBA</div>
+    </header>
+
+    <marquee scrollamount="15">
+        🚨 ALERTA: USE ÓCULOS DE SOL! O REFLEXO DESSE MENINO PODE CEGAR! 🚨 PARABÉNS PELO SEU DIA! 🚨 CUIDADO COM O FERRO DE SOLDA!
+    </marquee>
+
+    <div class="section-zueira">
+        
+        <div class="card">
+            <h2><i class="fas fa-id-card"></i> FICHA DO PERSONAGEM</h2>
+            <div class="stats-container">
+                <div class="stat-box">
+                    MELANINA
+                    <div class="stat-bar"><div class="fill-melanina"></div></div>
+                    <small>Erro 404: Not Found</small>
+                </div>
+                <div class="stat-box">
+                    ALMA (RUIVO)
+                    <div class="stat-bar"><div class="fill-melanina"></div></div>
+                    <small>0% (Sem alma)</small>
+                </div>
+                <div class="stat-box">
+                    SKILL EM ELETRÔNICA
+                    <div class="stat-bar"><div class="fill-eletronica"></div></div>
+                    <small>Sabe o que é um LED</small>
+                </div>
+                <div class="stat-box">
+                    REFLETIVIDADE
+                    <div class="stat-bar"><div class="fill-ruivo"></div></div>
+                    <small>OFUSCANTE</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="ifba-warning">
+            <i class="fas fa-bolt"></i> INSTITUTO FEDERAL DA BAHIA INFORMA <i class="fas fa-bolt"></i>
+            <br><br>
+            "Devido ao aniversário do aluno Enzo, as aulas de eletrônica hoje foram canceladas pois ele tentou assoprar as velas e queimou a protoboard inteira."
+        </div>
+
+        <div class="card">
+            <h2><i class="fas fa-fire"></i> CURIOSIDADES</h2>
+            <ul style="text-align: left; list-style-type: square; padding-left: 20px;">
+                <li><p>Se colocar o Enzo no sol do meio-dia em Salvador, ele vira um <strong>sinalizador de emergência</strong>.</p></li>
+                <li><p>Dizem que ele é ruivo porque enferrujou na chuva.</p></li>
+                <li><p>Na aula de Eletrônica, ele não precisa de multímetro, ele toca no fio e se ficar vermelho igual o cabelo, tem corrente.</p></li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="photo-area">
+        <h2 style="color: black; margin-bottom: 30px; font-size: 2rem;">📸 HALL DA FAMA (OU INFÂMIA)</h2>
+        
+        <div class="photo-grid">
+            
+            <div class="polaroid">
+                <img src="https://raw.githubusercontent.com/hack3r029/Enzo/refs/heads/main/IMG_20251117_082930.jpg" alt="Enzo no IFBA">
+                <p>Tentando soldar sem chorar</p>
+            </div>
+
+            <div class="polaroid">
+                <img src="https://raw.githubusercontent.com/hack3r029/Enzo/refs/heads/main/IMG_20251119_134120.jpg" alt="Enzo no Sol">
+                <p>Refletindo a luz de Salvador</p>
+            </div>
+
+            <div class="polaroid">
+                <img src="https://raw.githubusercontent.com/hack3r029/Enzo/refs/heads/main/IMG_20251204_145201.jpg" alt="Enzo Zueira">
+                <p>O terror do Barbalho</p>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="section-zueira">
+        <div class="textao">
+            <h2>FELIZ ANIVERSÁRIO, MANO! 🎉</h2>
+            <p>
+                Fala tu, meu nobre <strong>Ed Sheeran da Shopee</strong>! <br><br>
+                
+                Parabéns por mais um ano sobrevivendo ao IFBA e a esse sol da Bahia sem derreter. 
+                Que sua vida tenha menos resistores queimados e mais aprovações (milagres acontecem).
+                <br><br>
+                Tamo junto no curso de eletrônica sofrendo igual condenado, mas a amizade é o que mantém a gente sem surtar (mentira, a gente surta sim).
+                <br><br>
+                Curte teu dia, come bolo (cuidado pra não se queimar com a vela) e é nóis!
+                <br><br>
+                Ass: <strong>Seu parceiro de solda fria.</strong> 👊
+            </p>
+        </div>
+
+        <button class="redeem-btn" onclick="fireConfetti()">CLIQUE PARA GERAR ALEGRIA (E LAG)</button>
+    </div>
+
+    <footer>
+        <p>Feito com ❤️, ☕ e muito ódio por capacitores estufados.</p>
+        <p>IFBA Salvador - Eletrônica Team</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script>
+        // Função para lançar confetes
+        function fireConfetti() {
+            var duration = 3 * 1000;
+            var animationEnd = Date.now() + duration;
+            var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+            var interval = setInterval(function() {
+                var timeLeft = animationEnd - Date.now();
+
+                if (timeLeft <= 0) {
+                    return clearInterval(interval);
+                }
+
+                var particleCount = 50 * (timeLeft / duration);
+                // Lança confetes aleatórios
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: Math.random() - 0.2, y: Math.random() - 0.2 } }));
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: Math.random() + 0.2, y: Math.random() - 0.2 } }));
+            }, 250);
+        }
+
+        // Lança confete assim que carrega, pra causar
+        window.onload = function() {
+            fireConfetti();
+            setTimeout(() => {
+                alert("⚠️ AVISO: Níveis críticos de brancura detectados. Ajuste o brilho do monitor para não queimar a retina.");
+            }, 1000);
+        };
+
+        // Easter Egg do Console (Só pros devs de eletrônica)
+        console.log("%c ATENÇÃO TÉCNICO EM ELETRÔNICA:", "color: red; font-size: 20px; font-weight: bold;");
+        console.log("Se o Enzo fosse um componente, ele seria um LED de alto brilho sem resistor: queima rápido no sol.");
+        console.log("Parabéns mano! Tmj.");
+
+    </script>
+</body>
+  </html>
+
